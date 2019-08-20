@@ -28,7 +28,7 @@ function changeRoom(room) {
 function movePlayer(direction) {
     if (!currentRoom.hasOwnProperty(direction)) {
         console.log("You can't go that way.");
-    } else if (currentRoom[direction].locked) {
+    } else if ('locked' in currentRoom[direction]) {
         if (playerInventory.includes('key')) {
             console.log("You unlocked the door with the key!");
             delete currentRoom[direction].locked;
