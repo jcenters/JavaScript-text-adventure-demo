@@ -1,3 +1,7 @@
+// A simple JavaScript adventure game. Fetch the key and open the door to freedom!
+
+// We have three rooms, each outlined as objects.
+
 var Room1 = {
     description: "You're standing in a damp stone room. There is an open doorway to your West and a locked door to your East.",
     east: Room3,
@@ -16,14 +20,22 @@ var Room3 = {
     west: Room1
 };
 
+// We keep track of the room you're in with currentRoom, starting with Room1.
+// gameOver tracks the game's state and lets you quit.
+// playerInventory is an array that keeps track of your inventory.
+
 var currentRoom = Room1;
 var gameOver = false;
 var playerInventory = [];
+
+// changeRoom merely changes your current room and describes the new one.
 
 function changeRoom(room) {
     currentRoom = room;
     describeRoom(currentRoom);
 }
+
+// Take a given direction, see if you can go that way, and then check if the door is locked. If locked, it checks your inventory for a key. If you have  a key, it deletes the lock from the room's object and lets you enter the room.
 
 function movePlayer(direction) {
     if (!currentRoom.hasOwnProperty(direction)) {
@@ -41,12 +53,16 @@ function movePlayer(direction) {
     }
 }
 
+// This prints the room's description and lists an item in the room.
+
 function describeRoom(room) {
     console.log(room.description);
     if (room.hasOwnProperty('item')) {
         console.log("You see a " + room.item + ".");
     }
 }
+
+// Add an item to the player's inventory array and delete it from the room object.
 
 function takeItem() {
     if (currentRoom.hasOwnProperty('item')) {
@@ -57,6 +73,8 @@ function takeItem() {
         console.log("You can't do that.");
     }
 }
+
+// List the contents of the player's inventory array in a human-friendly format.
 
 function listInventory() {
     if (playerInventory.length === 0) {
@@ -69,9 +87,12 @@ function listInventory() {
     }
 }
 
+// The main game loop, which provides a command prompt and interprets commands to activate the functions defined above.
+
 function gameLoop() {
     while (!gameOver) {
-        playerCommand = prompt("What next? Valid commands are east, west, inventory, look, take, and quit");
+
+        playerCommand = prompt("What next? Valid commands are east, west, inventory, look, take, and quit").toLowerCase();
 
         if (playerCommand == 'west') {
             movePlayer(playerCommand);
@@ -90,6 +111,8 @@ function gameLoop() {
         }
     }
 }
+
+// Kick off the game by describing currentRoom (which should be Room1) and initiating the game loop.
 
 describeRoom(currentRoom);
 gameLoop();
