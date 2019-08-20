@@ -1,5 +1,7 @@
 // A simple JavaScript adventure game. Fetch the key and open the door to freedom!
 
+// Probably the best way to run this is to paste it as a Chrome JavaScript snippet. Google that if you don't know how to create those. JavaScript is admittedly probably the worst language to implement an old-school text adventure in, but when all you have is a hammer…
+
 // We have three rooms, each outlined as objects.
 
 var Room1 = {
