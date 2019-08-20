@@ -8,6 +8,8 @@ var Room1 = {
     west: Room2
 };
 
+// You can easily add your own rooms by following these examples. Name the object Room# and tie it to a direction in another room. You'll also need to add the appropriate navigation command to the gameLoop() function—see the comment below.
+
 var Room2 = {
     description: "You're in a dim stone room. There is an open doorway to your East.",
     east: Room1,
@@ -88,6 +90,8 @@ function listInventory() {
 }
 
 // The main game loop, which provides a command prompt and interprets commands to activate the functions defined above.
+
+// The only movement directions in the loop are 'west' and 'east' but you can easily add your own by following the examples, calling the movePlayer function.
 
 function gameLoop() {
     while (!gameOver) {
